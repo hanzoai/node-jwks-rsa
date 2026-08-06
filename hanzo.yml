@@ -1,0 +1,10 @@
+# Canonical CI/CD config for hanzoai/node-jwks-rsa — read by hanzoai/ci (via
+# .hanzo/workflows/cicd.yml) and by platform.hanzo.ai.
+#
+# Library (npm). The gate is the repo's own `npm test`: the mocha suite over
+# src/ plus the TypeScript pass (tsc, then mocha over ts-output), so a break in
+# either the JS or the shipped types fails it. No lockfile is committed here, so
+# `npm install`.
+test:
+  - name: unit
+    run: npm install --no-audit --no-fund && npm test
